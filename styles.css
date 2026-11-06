@@ -2,34 +2,44 @@
    white paper, indigo ink, one highlighter colour per idea. */
 
 @font-face {
-  font-family: "Bricolage";
-  src: url("fonts/bricolage.woff2") format("woff2-variations");
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
+  font-family: "Instrument Sans";
+  src: url("fonts/instrument-sans.woff2") format("woff2-variations");
+  font-weight: 400 700;
   font-display: swap;
 }
 @font-face {
-  font-family: "Source Serif";
-  src: url("fonts/source-serif.woff2") format("woff2-variations");
-  font-weight: 200 900;
+  font-family: "Instrument Serif";
+  src: url("fonts/instrument-serif.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("fonts/instrument-serif-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
 }
 
 :root {
-  --ink: #2a2350;
-  --ink-soft: #5e5a7a;
-  --ink-faint: #9a96b0;
+  --ink: #14162b;
+  --ink-soft: #5b5f80;
+  --ink-faint: #9497b3;
   --paper: #ffffff;
-  --mist: #f5f3fa;
-  --line: #e4e1ee;
-  --yellow: #ffe45c;
-  --pink: #ffa8d4;
-  --mint: #86ebc6;
-  --sky: #9ad8ff;
-  --lilac: #cfc0ff;
-  --ok: #0e8a5f;
-  --sans: "Bricolage", ui-sans-serif, system-ui, sans-serif;
-  --serif: "Source Serif", Georgia, serif;
+  --mist: #f3f4fb;
+  --line: #e3e5f2;
+  --cobalt: #2e3bff;
+  --cobalt-deep: #1f29d6;
+  --cobalt-soft: #eef0ff;
+  /* former highlighter names now resolve to the cobalt system */
+  --yellow: #eef0ff;
+  --pink: #eef0ff;
+  --mint: #eef0ff;
+  --sky: #eef0ff;
+  --lilac: #eef0ff;
+  --ok: #0c8457;
+  --sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --serif: "Instrument Serif", Georgia, serif;
   --wrap: 1120px;
 }
 
@@ -47,7 +57,7 @@ body {
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
 }
-::selection { background: var(--yellow); }
+::selection { background: var(--cobalt); color: #fff; }
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
@@ -70,11 +80,11 @@ img { max-width: 100%; display: block; }
   padding: 14px 22px; border-radius: 14px; font: 650 16.5px/1 var(--sans);
   text-decoration: none; cursor: pointer; border: 0; transition: transform .12s, box-shadow .12s;
 }
-.btn-primary { background: var(--ink); color: #fff; box-shadow: 4px 4px 0 var(--accent, var(--yellow)); }
-.btn-primary:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--accent, var(--yellow)); }
-.btn-primary:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--accent, var(--yellow)); }
-.btn-secondary { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 2px var(--line); }
-.btn-secondary:hover { box-shadow: inset 0 0 0 2px var(--ink); }
+.btn-primary { background: var(--cobalt); color: #fff; }
+.btn-primary:hover { background: var(--cobalt-deep); }
+
+.btn-secondary { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .6); }
+.btn-secondary:hover { box-shadow: inset 0 0 0 1.5px #fff; }
 .btn[aria-disabled="true"] { cursor: default; }
 
 /* ---------- Hero ---------- */
@@ -199,3 +209,44 @@ section { padding: 88px 0; }
 .legal th { background: var(--mist); }
 
 .split .shot-inline img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* ===== Cobalt Editorial overrides ===== */
+.site-header { background: var(--cobalt); color: #fff; }
+.brand, .nav a { color: #fff; }
+.nav a { opacity: .75; }
+.nav a:hover { opacity: 1; color: #fff; }
+.brand { font-weight: 700; font-size: 19px; }
+
+.hero { background: var(--cobalt); color: #fff; position: relative; }
+.hero::after { content: ""; position: absolute; right: -120px; bottom: -200px; width: 520px; height: 520px; border-radius: 50%; border: 80px solid rgb(255 255 255 / .06); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 1; }
+.hero h1 { font-family: var(--serif); font-weight: 400; font-stretch: normal; letter-spacing: -0.01em; line-height: 1; font-size: clamp(50px, 7.2vw, 92px); }
+.hero h1 em { font-style: italic; }
+.hero p.lede { color: rgb(255 255 255 / .82); }
+.hero .fine { color: rgb(255 255 255 / .65); }
+.hero .btn-primary { background: #fff; color: var(--cobalt); }
+.hero .btn-primary:hover { background: var(--cobalt-soft); }
+.swatch { display: none; }
+.shot { box-shadow: 0 40px 80px -30px rgb(8 12 90 / .7); }
+
+.section-head h2, .split h2 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; font-size: clamp(38px, 5vw, 58px); line-height: 1.02; }
+.step { background: var(--mist); }
+.step::before { background: var(--cobalt); color: #fff; }
+.platform { background: var(--mist) !important; border-top: 4px solid var(--cobalt); border-radius: 6px 6px 22px 22px; }
+.platform h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; letter-spacing: 0; }
+.platform .writes { color: var(--cobalt); }
+.ticks li::before { background-color: var(--cobalt) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.split .shot-inline { box-shadow: 0 0 0 1px rgb(20 22 43 / .06), 0 30px 60px -28px rgb(20 22 43 / .4), 12px 12px 0 var(--cobalt); }
+.promise { background: var(--cobalt); }
+.promise blockquote { font-family: var(--serif); font-size: clamp(30px, 3.8vw, 46px); line-height: 1.12; }
+.promise p { color: rgb(255 255 255 / .8); }
+.plan h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; letter-spacing: 0; }
+.plan .price { font-family: var(--serif); font-weight: 400; letter-spacing: 0; font-size: 56px; }
+.plan.featured { background: var(--cobalt); color: #fff; box-shadow: none; }
+.plan.featured .for, .plan.featured .price small { color: rgb(255 255 255 / .75); }
+.plan.featured .ticks li::before { background-color: #fff !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='%232e3bff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.faq summary { font-weight: 600; }
+.site-footer a:hover { text-decoration-color: var(--cobalt); }
+.legal h1 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.01em; font-size: clamp(44px, 6vw, 64px); }
+.legal .summary { background: var(--cobalt-soft); }
+.legal .summary h2 { color: var(--cobalt); }
